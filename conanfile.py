@@ -6,7 +6,7 @@ class PistacheConan(ConanFile):
     name = "pistache"
     version = "c5ff6f9"
     license = "Apache License 2.0"
-    url = "https://github.com/conan-community/conan-pistache.git"
+    url = "git@gitlab.com:serialprimate/conan-pistache.git"
     description = "A high-performance REST Toolkit written in C++"
     settings = "os", "compiler", "build_type", "arch"
     options = {"shared": [True, False], "fPIC": [True, False]}
