@@ -9,8 +9,8 @@ class PistacheConan(ConanFile):
     url = "git@gitlab.com:serialprimate/conan-pistache.git"
     description = "A high-performance REST Toolkit written in C++"
     settings = "os", "compiler", "build_type", "arch"
-    options = {"shared": [True, False], "fPIC": [True, False]}
-    default_options = "shared=False", "fPIC=False"
+    options = {"shared": [True, False], "fPIC": [True, False], "commitID": "ANY"}
+    default_options = "shared=False", "fPIC=False", "commitID="+version
     generators = "cmake"
 
     @property
@@ -20,7 +20,7 @@ class PistacheConan(ConanFile):
     def source(self):
         git = tools.Git(folder=self.src_folder)
         git.clone("https://github.com/oktal/pistache.git", "master")
-        git.checkout(element=self.version)
+        git.checkout(element=self.options.commitID)
         tools.replace_in_file(path.join(self.src_folder, 'CMakeLists.txt'), 'project (pistache)',
             """project (pistache)
 include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
